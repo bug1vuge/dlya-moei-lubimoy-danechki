@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Прости меня, Зай | Та самая поездка</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f3efe7 0%, #ece4db 100%);
+            font-family: 'Inter', sans-serif;
+            color: #2f241b;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .apology-card {
+            max-width: 720px;
+            width: 100%;
+            background: #fffaf5;
+            border-radius: 48px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.08), 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #d9c7b3 0%, #cbb79f 100%);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #eedbcb;
+        }
+
+        .hero i {
+            font-size: 3.5rem;
+            color: #fff0e4;
+            background: rgba(70, 45, 30, 0.2);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(2px);
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: #2b211b;
+            margin-bottom: 0.3rem;
+        }
+
+        .sub {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #3a2c22;
+            background: rgba(255,245,235,0.5);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        .message-content {
+            padding: 2rem;
+        }
+
+        .confession-box {
+            background: #fef6ef;
+            border-radius: 32px;
+            padding: 1.6rem;
+            margin-bottom: 1.8rem;
+            border-left: 5px solid #c9956e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .confession-box p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #3f2d21;
+        }
+
+        .confession-box p i {
+            color: #bc7a53;
+            width: 24px;
+            margin-right: 6px;
+        }
+
+        .promise-block {
+            margin-bottom: 1.5rem;
+            background: #fffcf8;
+            border-radius: 28px;
+            padding: 0.2rem 0 0.6rem 0;
+        }
+        
+        .promise-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b5a3e;
+            padding: 0 0.2rem;
+        }
+
+        .reason-list {
+            list-style: none;
+            margin-top: 0.2rem;
+        }
+        .reason-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            background: #fff9f4;
+            padding: 0.8rem 1rem;
+            border-radius: 24px;
+            transition: all 0.1s ease;
+        }
+        .reason-list li i {
+            color: #bc7a53;
+            font-size: 1.2rem;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .action-area {
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        .forgive-btn {
+            background: #d9b496;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #3e2a1f;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-family: 'Inter', sans-serif;
+        }
+        .forgive-btn:hover {
+            background: #cca882;
+            transform: scale(1.01);
+        }
+
+        .call-button {
+            background: #7faa5d;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .call-button:hover {
+            background: #6b964b;
+            transform: translateY(-2px);
+        }
+
+        .confirmation-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #a46846;
+            min-height: 60px;
+        }
+
+        .secret-gift {
+            border-top: 1px solid #eedbcb;
+            margin-top: 1.5rem;
+            padding: 1.2rem 1rem 0.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #af8267;
+            cursor: pointer;
+        }
+
+        .gift-reveal {
+            background: #f8ede5;
+            border-radius: 28px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer-note {
+            background: #f7ede5;
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b18468;
+        }
+
+        @media (max-width: 550px) {
+            .message-content {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .heart-float {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.5rem;
+            animation: floatHeart 1s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes floatHeart {
+            0% { opacity: 1; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-100px) scale(1.3); }
+        }
+
+        .bounce {
+            animation: gentleBounce 0.4s ease;
+        }
+        @keyframes gentleBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); background-color: #d9b496; }
+        }
+        
+        /* анимация для букета на весь экран */
+        .flower-bouquet-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeInOverlay 0.3s ease;
+            flex-direction: column;
+        }
+        
+        .flower-bouquet-content {
+            text-align: center;
+            background: rgba(255,245,235,0.95);
+            padding: 2rem;
+            border-radius: 60px;
+            animation: popUp 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+        }
+        
+        .flower-bouquet-content i {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: sway 2s infinite ease;
+        }
+        
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        .fade-out {
+            animation: fadeOutAnim 0.6s forwards;
+        }
+        
+        @keyframes fadeOutAnim {
+            to { opacity: 0; visibility: hidden; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="apology-card" id="apologyCard">
+    <div class="hero">
+        <div class="hero__image">
+            <img src="./sticker.png" alt="Стикер">
+        </div>
+        <h1>Прости меня, Зая...</h1>
+        <div class="sub">та самая грязная & холодная поездка</div>
+    </div>
+
+    <div class="message-content">
+        <div class="confession-box">
+            <p><i class="fas fa-tree"></i> <strong>Вчерашний вечер...</strong> мы хотели классно провести время, а вместо этого я завёз нас в глухой лес, где было грязно, холодно и темно. Ты замёрзла, расстроилась, перестала меня слушать — и нам пришлось очень долго выбираться. Это полностью моя вина: я не продумал маршрут, не проверил погоду и дорогу. Мне невероятно стыдно.</p>
+            <p><i class="fas fa-clock"></i> <strong>А ещё до этого...</strong> я поехал за едой и опоздал на 30 минут. Ты ждала меня, а настроение уже начало портиться. Я подвёл тебя, и мне правда очень жаль.</p>
+            <p><i class="fas fa-female"></i> <strong>И вдобавок у тебя ПМС...</strong> в такие дни ты нуждаешься в заботе и тепле, а я устроил стресс-поездку по грязи. Прости, что не позаботился о тебе как следует, не создал уют и спокойствие.</p>
+            <p><i class="fas fa-heart-broken"></i> <strong>Я скучаю по тебе и по Снюсику.</strong> Не хватает наших тёплых вечеров, твоего смеха и даже того, как ты ворчишь. Мне очень грустно без вас.</p>
+        </div>
+
+        <div class="promise-block">
+            <div class="promise-title">
+                <i class="fas fa-seedling"></i> Что я понял и обещаю
+            </div>
+            <ul class="reason-list">
+                <li><i class="fas fa-map-marked-alt"></i> <strong>Планировать маршруты заранее</strong> — проверять погоду, дороги и чтобы было только комфортно.</li>
+                <li><i class="fas fa-hourglass-half"></i> <strong>Никогда не опаздывать</strong> — твоё время очень ценно, я буду приходить заранее.</li>
+                <li><i class="fas fa-heartbeat"></i> <strong>Быть чутким к твоему состоянию</strong> — в дни ПМС я рядом: чай, плед, уют и никакого экстрима.</li>
+                <li><i class="fas fa-comment-dots"></i> <strong>Слушать и слышать</strong> — даже если ты злишься — я не буду перебивать, а просто обниму.</li>
+            </ul>
+        </div>
+
+        <div class="action-area">
+            <button class="forgive-btn" id="forgiveBtn">
+                <i class="fas fa-check-circle"></i> Я тебя прощаю
+            </button>
+            <div id="confirmationMessage" class="confirmation-message"></div>
+            <div id="callButtonContainer" style="margin-top: 5px;"></div>
+        </div>
+
+        <!-- секретный блок с букетом и сюрпризом -->
+        <div class="secret-gift" id="secretTrigger">
+            <span><i class="fas fa-gift"></i> маленький сюрприз-извинение 🌸</span>
+            <div id="giftTextBlock" class="gift-reveal hidden">
+                <i class="fas fa-cookie-bite"></i> Я привезу твой любимый десерт и обниму так крепко, как только можно. И больше никакой грязи — только асфальт и солнце ☀️
+            </div>
+        </div>
+    </div>
+    <div class="footer-note">
+        <i class="fas fa-bicycle"></i>  Я хочу стать лучше для тебя. Спасибо, что ты есть, моя Зая.
+    </div>
+</div>
+
+<script>
+    (function() {
+        const forgiveBtn = document.getElementById('forgiveBtn');
+        const confirmationDiv = document.getElementById('confirmationMessage');
+        const callContainer = document.getElementById('callButtonContainer');
+        const secretTrigger = document.getElementById('secretTrigger');
+        const giftTextBlock = document.getElementById('giftTextBlock');
+        const card = document.getElementById('apologyCard');
+        
+        // --- ЗАМЕНИТЕ НА ВАШ НОМЕР ТЕЛЕФОНА (пример +7...) ---
+        const MY_PHONE_NUMBER = "+79991234567";   // <--- СЮДА ВСТАВЬТЕ СВОЙ НОМЕР
+        
+        let forgivenessGiven = false;
+        
+        // сердечки
+        function createFloatingHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            const icons = ['❤️', '💖', '🌸', '💗', '🌹', '✨', '💕', '🐰'];
+            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            heart.style.left = (x - 15) + 'px';
+            heart.style.top = (y - 20) + 'px';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = (20 + Math.random() * 18) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+        
+        function burstHeartsAroundRect(rect, count = 14) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const offsetX = (Math.random() - 0.5) * (rect.width + 40);
+                    const offsetY = (Math.random() - 0.5) * (rect.height + 30);
+                    createFloatingHeart(rect.left + rect.width/2 + offsetX, rect.top + rect.height/2 + offsetY);
+                }, i * 45);
+            }
+        }
+        
+        // функция показа букета на весь экран (анимированный)
+        function showFullscreenBouquet() {
+            return new Promise((resolve) => {
+                // создаем оверлей
+                const overlay = document.createElement('div');
+                overlay.className = 'flower-bouquet-overlay';
+                overlay.innerHTML = `
+                    <div class="flower-bouquet-content">
+                        <i class="fas fa-bouquet"></i><br>
+                        <i class="fas fa-rose" style="font-size: 3rem; margin: 0 5px;"></i>
+                        <i class="fas fa-seedling" style="font-size: 3rem; margin: 0 5px;"></i>
+                        <i class="fas fa-leaf" style="font-size: 3rem; margin: 0 5px;"></i>
+                        <h3 style="margin-top: 1rem; font-family: Cormorant Garamond;">Для моей Зайки 🌷</h3>
+                        <p style="margin-top: 0.5rem;">прости меня, пожалуйста...</p>
+                        <div><img src="./cat.png" alt="Котенок"/></div>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+                // автоматически удаляем через 2.2 секунды
+                setTimeout(() => {
+                    overlay.classList.add('fade-out');
+                    setTimeout(() => {
+                        if(overlay && overlay.remove) overlay.remove();
+                        resolve();
+                    }, 600);
+                }, 2200);
+            });
+        }
+        
+        // показать текст с десертом после букета
+        async function showSurpriseWithBouquet() {
+            // блокируем клики на время анимации (по желанию)
+            if (giftTextBlock && !giftTextBlock.classList.contains('hidden')) {
+                // если уже открыто, можно просто ничего или показать снова букет?
+                await showFullscreenBouquet();
+                // дополнительно подсветим текст
+                giftTextBlock.style.transform = 'scale(1.02)';
+                setTimeout(() => { if(giftTextBlock) giftTextBlock.style.transform = ''; }, 300);
+                return;
+            }
+            // показываем букет
+            await showFullscreenBouquet();
+            // после букета показываем текстовый блок, если он скрыт
+            if (giftTextBlock && giftTextBlock.classList.contains('hidden')) {
+                giftTextBlock.classList.remove('hidden');
+                // добавим небольшие сердечки
+                const rect = giftTextBlock.getBoundingClientRect();
+                burstHeartsAroundRect(rect, 8);
+            } else if (giftTextBlock) {
+                // если уже виден, просто делаем акцент
+                giftTextBlock.style.transform = 'scale(1.02)';
+                setTimeout(() => { if(giftTextBlock) giftTextBlock.style.transform = ''; }, 300);
+                const rect = giftTextBlock.getBoundingClientRect();
+                burstHeartsAroundRect(rect, 8);
+            }
+        }
+        
+        // кнопка звонка
+        function showCallButton() {
+            if (callContainer.innerHTML.trim() !== "") return;
+            const callLink = document.createElement('a');
+            callLink.href = `tel:${MY_PHONE_NUMBER}`;
+            callLink.className = 'call-button';
+            callLink.innerHTML = '<i class="fas fa-phone-alt"></i> Позвони мне, пожалуйста ❤️';
+            callLink.setAttribute('target', '_self');
+            callContainer.appendChild(callLink);
+            callLink.style.animation = 'fadeInUp 0.4s ease';
+            const style = document.createElement('style');
+            style.textContent = `@keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`;
+            document.head.appendChild(style);
+        }
+        
+        // прощение
+        function grantForgiveness() {
+            if (!forgivenessGiven) {
+                forgivenessGiven = true;
+                confirmationDiv.innerHTML = '💖 Спасибо, моя Зая! Твоё прощение — всё для меня. Обещаю больше никогда не подводить тебя такими глупыми выходками. 💖<br>🌷 Нажми на кнопку ниже — я очень хочу услышать твой голос и сказать лично, как мне жаль.';
+                forgiveBtn.classList.add('bounce');
+                setTimeout(() => forgiveBtn.classList.remove('bounce'), 400);
+                // много сердечек
+                for (let i = 0; i < 24; i++) {
+                    setTimeout(() => {
+                        const randX = Math.random() * window.innerWidth;
+                        const randY = Math.random() * (window.innerHeight - 100) + 50;
+                        createFloatingHeart(randX, randY);
+                    }, i * 50);
+                }
+                card.style.transition = 'box-shadow 0.3s';
+                card.style.boxShadow = '0 0 0 3px #e9bea1, 0 25px 40px rgba(0,0,0,0.1)';
+                setTimeout(() => card.style.boxShadow = '', 800);
+                showCallButton();
+            } else {
+                confirmationDiv.innerHTML = '💞 Ты уже простила меня... Спасибо большое. Если хочешь позвонить, нажми на зелёную кнопку. Жду твоего звонка, Зая. 💞';
+                if(callContainer.innerHTML.trim() === "") showCallButton();
+                else {
+                    const btn = document.querySelector('.call-button');
+                    if(btn) btn.style.transform = 'scale(1.02)';
+                    setTimeout(() => { if(btn) btn.style.transform = ''; }, 300);
+                }
+                const btnRect = forgiveBtn.getBoundingClientRect();
+                burstHeartsAroundRect(btnRect, 12);
+            }
+        }
+        
+        // обработчик кнопки прощения
+        forgiveBtn.addEventListener('click', (e) => {
+            const rect = forgiveBtn.getBoundingClientRect();
+            burstHeartsAroundRect(rect, 6);
+            grantForgiveness();
+        });
+        
+        // сюрприз: показываем букет на весь экран, а потом текст (десерт и тд)
+        secretTrigger.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            await showSurpriseWithBouquet();
+        });
+        
+        // начальное сообщение с тёплым обращением "зая"
+        setTimeout(() => {
+            if(!forgivenessGiven) {
+                confirmationDiv.innerHTML = '🌧️ Зай, мне очень стыдно за вчерашний вечер... Я знаю, что подвёл тебя. Пожалуйста, нажми «Я тебя прощаю», когда будешь готова. Хочу всё исправить. 🌧️';
+            }
+        }, 400);
+        
+        // клики по списку обещаний — маленькие сердечки
+        const listItems = document.querySelectorAll('.reason-list li');
+        listItems.forEach(li => {
+            li.addEventListener('click', (e) => {
+                const rect = li.getBoundingClientRect();
+                burstHeartsAroundRect(rect, 6);
+            });
+        });
+        
+        console.log("Сайт готов! Не забудь заменить номер телефона MY_PHONE_NUMBER на свой");
+    })();
+</script>
+</body>
+</html>
